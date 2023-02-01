@@ -1,0 +1,21 @@
+{
+  "name": "projeto-drivencracy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MoniqueMSouza/Projeto-Drivencracy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MoniqueMSouza/Projeto-Drivencracy/issues"
+  },
+  "homepage": "https://github.com/MoniqueMSouza/Projeto-Drivencracy#readme"
+}
