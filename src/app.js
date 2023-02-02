@@ -7,7 +7,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const mongoClient = new MongoClient(process.env.DATABASE_URL);
+const mongoClient = new MongoClient(process.env.MONGO_URI);
 let db;
 
 try {
@@ -24,6 +24,9 @@ app.use(express.json());
 
 
 
-app.listen(5000, () => {
-  console.log(chalk.blue('Servidor Funcionando na porta 5000'));
+
+
+
+app.listen(process.env.PORT, () => {
+  console.log(chalk.blue('Servidor Funcionando na porta ' + process.env.PORT));
 })
