@@ -3,7 +3,7 @@ import cors from "cors";
 import chalk from "chalk"
 import { MongoClient } from "mongodb";
 import dotenv from 'dotenv'
-
+import dayjs from 'dayjs'
 
 dotenv.config()
 
@@ -19,12 +19,38 @@ try {
 }
 
 const app = express();
+const Formato = ('YYYY/MM/DD HH:mm');
+
 app.use(cors());
 app.use(express.json());
 
+app.post("/poll", async (req, res) => {
+  try {
+  const {title, expireAt} = req.body;
+  let data = expireAt;
 
+  if (!title) return res.status(422).send('Insira um título!')
+  if (!expireAt) return data = dayjs().add(30, 'day').format(Formato);
 
+ 
+    await db.collection("poll").insertOne({
+      title: title,
+      expireAt: data
+    })
 
+  } catch {
+    return res.status(500).send("Erro!")
+  }
+
+})
+app.get("/poll",async (req,res) => {
+  try {
+      const poll = await db.collection("poll").find({}).toArray();
+      res.status(200).send(poll);
+  } catch (error) {
+      console.log(error.message);
+  }
+})
 
 
 app.listen(process.env.PORT, () => {
